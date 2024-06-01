@@ -1,0 +1,33 @@
+<?php
+
+// URL 설정
+$url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth';
+
+// 요청할 파라미터 설정
+$params = [
+    'returnType' => 'json', // 예시 값입니다. 원하는 값으로 변경하세요.
+    'searchDate' => '2024-06-01', // 예시 값입니다. 원하는 날짜로 변경하세요.
+    'InformCode' => 'PM10' // 예시 값입니다. 원하는 코드로 변경하세요.
+];
+
+// URL에 파라미터 추가
+$queryString = http_build_query($params);
+$requestUrl = $url . '?' . $queryString;
+
+// cURL 세션 초기화
+$ch = curl_init();
+
+// 옵션 설정
+curl_setopt($ch, CURLOPT_URL, $requestUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// 요청 실행 및 결과 저장
+$response = curl_exec($ch);
+
+// cURL 세션 종료
+curl_close($ch);
+
+// 결과 출력
+echo $response;
+
+?>
